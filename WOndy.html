@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Wonderla Booking</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+
+    <body style="background-color:yellow;">
+        <h1><center>Wonderla Booking Form</center></h1>
+        <hr style="color:black">
+        <form>
+            <label for="name"><b>Full name:</b></label><br>
+            <input type="text" id="fname" maxlength="25" name="name" required>
+            <br>
+            <br>
+            <label for="age"><b>Age:</b></label><br>
+            <input type="number" id="fname" maxlength="2" name="age">
+            <br>
+            <br>
+            <b>Choose all the Parks to be visited:</b>
+            <br>
+            <input type="checkbox" id="dry" name="dry" value="Dry">
+            <label for="typess">Amusement Park</label><br>
+            <input type="checkbox" id="wet" name="wet" value="Wet">
+            <label for="types">Water Park</label><br>
+            <input type="checkbox" id="snow" name="snow" value="Snow">
+            <label for="type">Snow Kingdom</label>
+            <br>
+            <br>
+            <b>Choose the Pass Type:</b>
+            <br>
+            <input type="radio" id="Normal" name="fav_language" value="Regular">
+            <label for="Regular">Regular</label><br>
+            <input type="radio" id="Fast Track" name="fav_language" value="Fast Track">
+            <label for="Fast Track">Fast Track</label>
+            <br>
+            <br>
+            <label for="Visit"><b>Date of Visit:</b></label>
+            <input type="date" id="Visit" name="Visit">
+            <br>
+            <br>
+            <label for="count"><b>Total People:</b></label><br>
+            <input type="number" id="count" maxlength="2" name="count">
+            <br>
+            <br>
+            <hr>
+            <br><input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
+
