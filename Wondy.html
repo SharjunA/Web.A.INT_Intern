@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wonderla Booking</title>
+    <style>
+        body {
+            background-color: yellow;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        hr {
+            color: black;
+        }
+
+        #displaySection {
+            display: none;
+        }
+
+        .middle {
+            margin: auto;
+            width: 60%;
+            border: 3px solid ;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <center><img src="wondd.jpg" width="500" height="100"></center>
+    <h1>Wonderla Booking Form</h1>
+    <div  class="middle">
+        <form id="bookingForm" onsubmit="return validateForm()">
+            <label for="name"><b>Full name:</b></label><br>
+            <input type="text" id="fname" maxlength="25" name="name" required><br><br>
+
+            <label for="number"><b>Mobile Number:</b></label><br>
+            <input type="tel" id="mno" name="mobile" maxlength="10" pattern="[0-9]+" required><br><br>
+
+            <label for="email"><b>Email:</b></label><br>
+            <input type="email" id="email" name="mail"><br><br>
+
+            <b>Choose all the Parks to be visited:</b><br>
+            <input type="checkbox" id="dry" name="parks" value="Amusement Park">
+            <label for="dry">Amusement Park</label><br>
+
+            <input type="checkbox" id="wet" name="parks" value="Water Park">
+            <label for="wet">Water Park</label><br>
+
+            <input type="checkbox" id="snow" name="parks" value="Snow Kingdom">
+            <label for="snow">Snow Kingdom</label><br><br>
+
+            <b>Choose the Pass Type:</b><br>
+            <input type="radio" id="Normal" name="passType" value="Regular" required>
+            <label for="Normal">Regular</label><br>
+
+            <input type="radio" id="Fast Track" name="passType" value="Fast Track" required>
+            <label for="Fast Track">Fast Track</label><br><br>
+
+            <label for="Visit"><b>Date of Visit:</b></label>
+            <input type="date" id="VisitDate" name="Visit" required><br><br>
+
+            <label for="count"><b>Total People:</b></label><br>
+            <input type="number" id="totalCount" min="1" max="20" name="count" required>
+            <br><br><br>
+            <center><input type="submit" value="Submit"></center>
+        </form>
+    </div>
+    <div id="displaySection">
+        <h2>Thank you for your submission!</h2>
+        <h3>Submitted Details:</h3>
+        <p><b>Full Name:</b> <span id="submittedName"></span></p>
+        <p><b>Mobile Number:</b> <span id="submittedMobile"></span></p>
+        <p><b>Email:</b> <span id="submittedEmail"></span></p>
+        <p><b>Parks Visited:</b> <span id="submittedParks"></span></p>
+        <p><b>Pass Type:</b> <span id="submittedPassType"></span></p>
+        <p><b>Date of Visit:</b> <span id="submittedVisitDate"></span></p>
+        <p><b>Total People:</b> <span id="submittedCount"></span></p>
+    </div>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById("fname").value;
+            var number = document.getElementById("mno").value;
+            var mail = document.getElementById("email").value;
+            var parksVisited = document.querySelectorAll('input[name="parks"]:checked');
+            var passType = document.querySelector('input[name="passType"]:checked');
+            var visitDate = document.getElementById("VisitDate").value;
+            var count = document.getElementById("totalCount").value;
+
+            if (name === "") {
+                alert("Full name must be filled out.");
+                return false;
+            }
+
+            if (number.length !== 10 || isNaN(number)) {
+                alert("Mobile number must have exactly 10 digits and contain only numbers.");
+                return false;
+            }
+
+            if (parksVisited.length === 0) {
+                alert("Please select at least one park.");
+                return false;
+            }
+
+            if (!passType) {
+                alert("Please select a pass type.");
+                return false;
+            }
+
+            var currentDate = new Date().toISOString().split("T")[0];
+            if (visitDate < currentDate) {
+                alert("Please select a future date for the visit.");
+                return false;
+            }
+
+            if (count < 1 || count > 20) {
+                alert("Total people must be between 1 and 20.");
+                return false;
+            }
+
+            // Display the "displaySection" after successful submission
+            document.getElementById("displaySection").style.display = "block";
+
+            // Display the submitted details
+            document.getElementById("submittedName").textContent = name;
+            document.getElementById("submittedMobile").textContent = number;
+            document.getElementById("submittedEmail").textContent = mail;
+
+            var selectedParks = [];
+            parksVisited.forEach(function (checkbox) {
+                selectedParks.push(checkbox.value);
+            });
+            document.getElementById("submittedParks").textContent = selectedParks.join(", ");
+
+            document.getElementById("submittedPassType").textContent = passType.value;
+            document.getElementById("submittedVisitDate").textContent = visitDate;
+            document.getElementById("submittedCount").textContent = count;
+
+            return false; // Prevent form submission for this example
+        }
+    </script>
+</body>
+</html>
